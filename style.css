@@ -1,0 +1,189 @@
+body {
+	font-family: monospace;
+	background-color: whitesmoke;
+	background-image: url("images/subway4.jpg");
+}
+
+.header {
+	background-color: whitesmoke;
+	text-align: center;
+	border: 5px ridge grey;
+	margin-top: 20px;
+	margin-right: 10%;
+	margin-left: 10%;
+	display: block;
+}
+
+.header h1 {
+	font-size: 65px;
+	color: navy;
+	font-weight: bold;
+	padding: 20px;
+}
+
+.header p {
+	font-size: 18px;
+	padding-right: 50px;
+	padding-left: 50px;
+	padding-top: 7px;
+	padding-bottom: 20px;
+}
+
+.clickme {
+	display: inline-block;
+	margin-left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	border-radius: 5px;
+	background-color: crimson;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 2px solid black;
+	cursor: default;
+}
+
+.clickme p {
+	font-size: 33px;
+	padding-right: 3px;
+	padding-left: 3px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	color: whitesmoke;
+}
+
+.score {
+	margin: 10px;
+	display: inline-block;
+	background-color: whitesmoke;
+	border: 5px double black;
+}
+
+#score-display, #rat-display, #roach-display, #scream-display, #gma-display {
+	color: crimson;
+}
+
+.score p {
+	color: black;
+	font-size: 23px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.gamepiece {
+	background-color: none;
+	width: 70px;
+	height: 68px;
+	position: relative;
+	display: inline-block;
+	left: -240px;
+	border-radius: 40px;
+	border: 1px solid black;
+}
+
+.scorepiece {
+	background-color: none;
+	width: 50px;
+	height: 48px;
+	position: relative;
+	display: inline-block;
+	border-radius: 40px;
+	border: 1px solid lightslategrey;
+	margin-left: 6px;
+	margin-right: -10px;
+}
+
+.indivscore {
+	display: inline-block;
+}
+
+.rat {
+	background: url("images/ratnew.png") no-repeat center;
+}
+
+.roach {
+	background: url("images/roachnew.png") no-repeat center;
+}
+
+.gma {
+	background: url("images/gmanew.png") no-repeat center;
+}
+
+.scream {
+	background: url("images/screamnew.png") no-repeat center;
+}
+
+#duck1a, #duck3c {
+	background-color: grey;
+}
+
+#duck1b, #duck3a, #duck4b {
+	background-color: gold;
+} 
+
+#duck1c, #duck2b, #duck4a  {
+	background-color: rosybrown;
+}
+
+#duck2c, #duck4c {
+	background-color: dodgerblue;
+}
+
+#duck2a, #duck3b {
+	background-color: white;
+}
+
+#playarea {
+	background-color: lightsteelblue;
+	height: 320px;
+	cursor: url("images/crosshair.png"), auto;
+	border-top: 5px ridge lightslategrey;
+	border-bottom: 5px ridge lightslategrey;
+}
+
+.setdiv {
+	padding-top: 5px;
+	height: 75px;
+}
+
+@media all and (max-width: 414px) {
+
+	.header h1 {
+		font-size: 38px;
+		padding: 10px;
+	}
+
+	.header p {
+		font-size: 14px;
+		padding-right: 25px;
+		padding-left: 25px;
+		padding-top: 4px;
+		padding-bottom: 10px;
+	}
+
+	.clickme p {
+		font-size: 25px;
+	}
+
+	.clickme {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	.score p {
+		color: black;
+		font-size: 19px;
+	}
+
+	.score {
+		margin: 5px;
+	}
+
+	.scorepiece {
+		width: 40px;
+		height: 38px;
+	}
+
+
+}
