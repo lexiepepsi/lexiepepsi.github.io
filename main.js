@@ -1,193 +1,846 @@
 $(document).ready(function() {
 
 
-// DISPLAY THE NUMBER OF COOKIES IN THE 'COOKIE BASKET' WHEN USER RETURNS
-
-// this works bc undefined = false, so if Cookies.get("choc-key") returns undefined, undefined will be false, if there is any value the conditional will be true and the code will run and create an alert
-
-// if the cookie key choc-key returns a value greater than 0 change the text of the choc-display to the value of the cookie key called choc-key, else change the text to 0
-
-	if (Cookies.get("choc-key") && parseInt(Cookies.get("choc-key")) > 0) {
-		$("#choc-display").text(Cookies.get("choc-key"));
-	} else {
-		$("#choc-display").text(0);
-	}
-
-	if (Cookies.get("sugar-key") && parseInt(Cookies.get("sugar-key")) > 0) {
-		$("#sugar-display").text(Cookies.get("sugar-key"));
-	} else {
-		$("#sugar-display").text(0);
-	}
-
-	if (Cookies.get("lemon-key") && parseInt(Cookies.get("lemon-key")) > 0) {
-		$("#lemon-display").text(Cookies.get("lemon-key"));
-	} else {
-		$("#lemon-display").text(0);
-	}
-
-	// if (Cookies.get("choc-key") && parseInt(Cookies.get("choc-key")) > 0) {
-	// 	$("#choc-display").text(Cookies.get("choc-key"));
-	// } 
-	// else {
-	// 	alert("You have 0 chcolate cookies. Do you want any chocolate cookies?")
+	// var points = {
+	// 	rat: 10,
+	// 	roach: 5
 	// }
 
-	// if (Cookies.get("sugar-key")) {
-	// 	alert("You have " + Cookies.get("sugar-key") + " sugar cookies.");
-	// } else {
-	// 	alert("You have 0 sugar cookies. Do you want any sugar cookies?")
-	// }
+	// var type = "rat";
 
-	// if (Cookies.get("lemon-key")) {
-	// 	alert("You have " + Cookies.get("lemon-key") + " lemon cookies.");
-	// } else {
-	// 	alert("You have 0 lemon cookies. Do you want any lemon cookies?")
-	// }
+	// points[type]; // returns 10
 
+	// var type = "roach";
 
-// ALERT USER ON SCROLL HOW TO USE SITE
+	// points[type]; // return 5
 
-// original alert on hover
-// 	$(".cookieimg").hover(function() {
-// 		alert("Welcome! Please enter the number of each type of cookie you'd like in the boxes below and click Submit. If you change your mind click Reset to start over.");
-// 	});
+// Initial Scores are Zero
+	$("#score-display").text(0);
 
-// Why doesn't  hasBeenTrigged = false work?
-// = sets a value, === tests if condition is true/false
-// would have to be: hasBeenTriggered === false
-
-	if (Cookies.get("choc-key")) {
-		alert("Welcome back! Let's eat some cookies!")
-	} else if (Cookies.get("sugar-key")) {
-		alert("Welcome back! Let's eat some cookies!")
-	} else if (Cookies.get("lemon-key")) {
-		alert("Welcome back! Let's eat some cookies!")
-	} else {
-		$(function(){
-
-	    var hasBeenTrigged = false;
-
-	    $(window).scroll(function() {
-	        if ($(this).scrollTop() >= 400 && !hasBeenTrigged) {
-	            alert("Welcome! Please enter the number of each type of cookie you'd like in the boxes below and click Submit. The cookies add up! If you change your mind click Reset to start over.");
-	            hasBeenTrigged = true;
-		        }
-		    });
-		});
-	}
-
-// SET NUMBER OF COOKIES TO A BROWSER COOKIE WHEN FORM IS SUBMITTED
-
-// the value of choc-input should be stored in a variable called numberchoc
-// then set a cookie with the value choc-key = (numberchocs)
-
-// **What is (event) for? is that for prevent default?
-// > we need event bc it gives you access to event object and allows us to access things like the default behavior, so we can change the default behavior to not refresh the page or attempt to push info to a server
-// what is .val doing?
-// > its a jquery function used on input fields to grab the value typed in an input field
-	
-	$("#choc-form").submit(function(event) {
-		event.preventDefault();
+	$("#rat-display").text(0);
+	$("#roach-display").text(0);
+	$("#scream-display").text(0);
+	$("#gma-display").text(0);
 
 
-		if (Cookies.get("choc-key") && parseInt(Cookies.get("choc-key")) > 0) {
-			var oldvalue = parseInt(Cookies.get("choc-key"));
+	// SHIRMUNG
+	// $(".gamepiece").click(function() {
+	//   var points = parseInt($(this).attr("data-points"));
+	//   var displayId = "#" + $(this).attr("data-type") + "-display";
+	//   $("#score-display").html(function(i, val) { return +val+points });
+ //      $(displayId).html(function(i, val) { return +val+points });
+	//   $(this).css("display", "none");
+	// });
 
-			var numberofchocs = $("#choc-input").val();
-			Cookies.set("choc-key", oldvalue + parseInt(numberofchocs));
+	// while loop with time (couter every time it runs add 1)
+	// 	setTimeout()
 
-			$("#choc-display").text(oldvalue + parseInt(numberofchocs));
+// Scores Change on Click and Images Disappear
+	$( "#duck1a" ).click(function() {
+	  	$("#score-display").html(function(i, val) { return +val+10 });
+	  	$("#rat-display").html(function(i, val) { return +val+10 });
+	  $("#duck1a").css("display", "none");
+	});
 
-		} else {
-			var numberofchocs = $("#choc-input").val();
-			Cookies.set("choc-key", numberofchocs);
+	$( "#duck1b" ).click(function() {
+	  $("#score-display").html(function(i, val) { return +val+5 });
+	  $("#roach-display").html(function(i, val) { return +val+5 });
+	  $("#duck1b").css("display", "none");
+	});
 
-			$("#choc-display").text(numberofchocs);
-		}
+	$( "#duck1c" ).click(function() {
+	  $("#score-display").html(function(i, val) { return +val+10 });
+	  $("#rat-display").html(function(i, val) { return +val+10 });
+	  $("#duck1c").css("display", "none");
+	});
 
-// earlier code that used alert to check for negatives, solved this with min=1 on the input object in html, better bc it doesn't allow the form to be submitted so the cookie doesn't get set to negative or 0
-		// else if (Cookies.get("choc-key") > 0) {
-		// 		alert("You're silly! Don't you want some cookies?")
-		// } else {
-		// 	var numberofchocs = $("#choc-input").val();
-		// 	Cookies.set("choc-key", numberofchocs);
+	$( "#duck2a" ).click(function() {
+	  	$("#score-display").html(function(i, val) { return +val-5 });
+	  	$("#scream-display").html(function(i, val) { return +val-5 });
+	  $("#duck2a").css("display", "none");
+	});
 
-		// 	$("#choc-display").text(numberofchocs);
-		// }
+	$( "#duck2b" ).click(function() {
+	  $("#score-display").html(function(i, val) { return +val+5 });
+	  $("#roach-display").html(function(i, val) { return +val+5 });
+	  $("#duck2b").css("display", "none");
+	});
+
+	$( "#duck2c" ).click(function() {
+	  $("#score-display").html(function(i, val) { return +val-10 });
+	  $("#gma-display").html(function(i, val) { return +val-10 });
+	  $("#duck2c").css("display", "none");
+	});
+
+	$( "#duck3a" ).click(function() {
+	  $("#score-display").html(function(i, val) { return +val+5 });
+	  $("#roach-display").html(function(i, val) { return +val+5 });
+	  $("#duck3a").css("display", "none");
+	});
+
+	$( "#duck3b" ).click(function() {
+	  $("#score-display").html(function(i, val) { return +val-5 });
+	  $("#scream-display").html(function(i, val) { return +val-5 });
+	  $("#duck3b").css("display", "none");
+	});
+
+	$( "#duck3c" ).click(function() {
+	  $("#score-display").html(function(i, val) { return +val+10 });
+	  $("#rat-display").html(function(i, val) { return +val+10 });
+	  $("#duck3c").css("display", "none");
+	});
+
+	$( "#duck4a" ).click(function() {
+	  $("#score-display").html(function(i, val) { return +val+10 });
+	  $("#rat-display").html(function(i, val) { return +val+10 });
+	  $("#duck4a").css("display", "none");
+	});
+
+	$( "#duck4b" ).click(function() {
+	  $("#score-display").html(function(i, val) { return +val+5 });
+	  $("#roach-display").html(function(i, val) { return +val+5 });
+	  $("#duck4b").css("display", "none");
+	});
+
+	$( "#duck4c" ).click(function() {
+	  $("#score-display").html(function(i, val) { return +val-10 });
+	  $("#gma-display").html(function(i, val) { return +val-10 });
+	  $("#duck4c").css("display", "none");
 	});
 
 
-
-	$("#sugar-form").submit(function(event) {
-		event.preventDefault();
-
-		if (Cookies.get("sugar-key") && parseInt(Cookies.get("sugar-key")) > 0) {
-			var oldvalue = parseInt(Cookies.get("sugar-key"));
-
-			var numberofsugars = $("#sugar-input").val();
-			Cookies.set("sugar-key", oldvalue + parseInt(numberofsugars));
-
-			$("#sugar-display").text(oldvalue + parseInt(numberofsugars));
-
-		} else {
-			var numberofsugars = $("#sugar-input").val();
-			Cookies.set("sugar-key", numberofsugars);
-
-			$("#sugar-display").text(numberofsugars);
-		}
-	});
-		
-
-	
-	$("#lemon-form").submit(function(event) {
-		event.preventDefault();
-
-		if(Cookies.get("lemon-key") && parseInt(Cookies.get("lemon-key")) > 0) {
-			var oldvalue = parseInt(Cookies.get("lemon-key"));
-
-			var numberoflemons = $("#lemon-input").val();
-			Cookies.set("lemon-key", oldvalue + parseInt(numberoflemons));
-
-			$("#lemon-display").text(oldvalue + parseInt(numberoflemons));
-
-		} else {
-			var numberoflemons = $("#lemon-input").val();
-			Cookies.set("lemon-key", numberoflemons);
-
-			$("#lemon-display").text(numberoflemons);
-		}
-
-	});
+// Gamepieces Move Across the Screen on Click
+// 6 seconds, 1900px
 
 
+// Math.floor((Math.random() * 5)) + 1
 
-// RESET BUTTONS
 
-// did you say cookies are always strings? Could i do the parse int thing down here?
-// >Yes always strings, you have to do a parse int on get never on set bc even with a parse int a cookie will always be set as a string
+// DUCK 1a
+	$( "#clickme" ).click(function() {
+  		$( "#duck1a" ).animate({
+   		 	left: "+=500",
+  		}, 2000, function() {
+  		});
 
-	$("#choc-reset").click(function() {
-		var numberofchocs = 0;
-		Cookies.set("choc-key", numberofchocs);
+  		$( "#duck1a" ).animate({
+   		 	left: "+=700",
+  		}, 1000, function() {
+  		});
 
-		$("#choc-display").text(numberofchocs);
-	});
+  		$( "#duck1a" ).animate({
+   		 	left: "+=200",
+  		}, 2000, function() {
+  		});
 
-	$("#sugar-reset").click(function() {
-		var numberofsugars = 0;
-		Cookies.set("sugar-key", numberofsugars);
+  		$( "#duck1a" ).animate({
+   		 	left: "+=500",
+  		}, 1000, function() {
+  			$("#duck1a").css("display", "none");
+  		});
 
-		$("#sugar-display").text(numberofsugars);
-	});
+	// GO BACK HOME
+  		$( "#duck1a" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck1a").css("display", "inline-block");
+ 		});
 
-	$("#lemon-reset").click(function() {
-		var numberoflemons = 0;
-		Cookies.set("lemon-key", numberoflemons);
+ 		$( "#duck1a" ).animate({
+   		 	left: "+=500",
+  		}, 2000, function() {
+  		});
 
-		$("#lemon-display").text(numberoflemons);
+  		$( "#duck1a" ).animate({
+   		 	left: "+=700",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck1a" ).animate({
+   		 	left: "+=200",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck1a" ).animate({
+   		 	left: "+=500",
+  		}, 1000, function() {
+  			$("#duck1a").css("display", "none");
+  		});
+
+	// GO BACK HOME
+  		$( "#duck1a" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck1a").css("display", "inline-block");
+ 		});
 	});
 
 
-	
+// DUCK 1b
+	$( "#clickme" ).click(function() {
+  		$( "#duck1b" ).animate({
+   		 	left: "+=120",
+  		}, 3000, function() {
+  		});
+
+  		$( "#duck1b" ).animate({
+   		 	left: "+=800",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck1b" ).animate({
+   		 	left: "+=200",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck1b" ).animate({
+   		 	left: "+=780",
+  		}, 1000, function() {
+  			$("#duck1b").css("display", "none");
+  		});
+
+	// GO BACK HOME
+  		$( "#duck1b" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck1b").css("display", "inline-block");
+ 		});
+
+ 		$( "#duck1b" ).animate({
+   		 	left: "+=120",
+  		}, 3000, function() {
+  		});
+
+  		$( "#duck1b" ).animate({
+   		 	left: "+=800",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck1b" ).animate({
+   		 	left: "+=200",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck1b" ).animate({
+   		 	left: "+=780",
+  		}, 1000, function() {
+  			$("#duck1b").css("display", "none");
+  		});
+
+	// GO BACK HOME
+  		$( "#duck1b" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck1b").css("display", "inline-block");
+ 		});
+	});
+
+
+// DUCK 1c
+	$( "#clickme" ).click(function() {
+  		$( "#duck1c" ).animate({
+   		 	left: "+=200",
+  		}, 3000, function() {
+  		});
+
+  		$( "#duck1c" ).animate({
+   		 	left: "+=500",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck1c" ).animate({
+   		 	left: "+=900",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck1c" ).animate({
+   		 	left: "+=300",
+  		}, 1000, function() {
+  			$("#duck1c").css("display", "none");
+  		});
+
+	// GO BACK HOME
+  		$( "#duck1c" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck1c").css("display", "inline-block");
+ 		});
+
+ 		$( "#duck1c" ).animate({
+   		 	left: "+=200",
+  		}, 3000, function() {
+  		});
+
+  		$( "#duck1c" ).animate({
+   		 	left: "+=500",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck1c" ).animate({
+   		 	left: "+=900",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck1c" ).animate({
+   		 	left: "+=300",
+  		}, 1000, function() {
+  			$("#duck1c").css("display", "none");
+  		});
+
+	// GO BACK HOME
+  		$( "#duck1c" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck1c").css("display", "inline-block");
+ 		});
+	});
+
+
+// DUCK 2a
+	$( "#clickme" ).click(function() {
+  		$( "#duck2a" ).animate({
+   		 	left: "+=50",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck2a" ).animate({
+   		 	left: "+=900",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck2a" ).animate({
+   		 	left: "+=300",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck2a" ).animate({
+   		 	left: "+=650",
+  		}, 2000, function() {
+  			$("#duck2a").css("display", "none");
+  		});
+
+	// GO BACK HOME
+  		$( "#duck2a" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+  		  $("#duck2a").css("display", "inline-block");
+ 		});
+
+ 		$( "#duck2a" ).animate({
+   		 	left: "+=50",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck2a" ).animate({
+   		 	left: "+=900",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck2a" ).animate({
+   		 	left: "+=300",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck2a" ).animate({
+   		 	left: "+=650",
+  		}, 2000, function() {
+  			$("#duck2a").css("display", "none");
+  		});
+
+	// GO BACK HOME
+  		$( "#duck2a" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+  		  $("#duck2a").css("display", "inline-block");
+ 		});
+	});
+
+
+// DUCK 2b
+	$( "#clickme" ).click(function() {
+  		$( "#duck2b" ).animate({
+   		 	left: "+=400",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck2b" ).animate({
+   		 	left: "+=800",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck2b" ).animate({
+   		 	left: "+=100",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck2b" ).animate({
+   		 	left: "+=600",
+  		}, 1000, function() {
+  			$("#duck2b").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck2b" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck2b").css("display", "inline-block");
+ 		});
+
+ 		$( "#duck2b" ).animate({
+   		 	left: "+=400",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck2b" ).animate({
+   		 	left: "+=800",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck2b" ).animate({
+   		 	left: "+=100",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck2b" ).animate({
+   		 	left: "+=600",
+  		}, 1000, function() {
+  			$("#duck2b").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck2b" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck2b").css("display", "inline-block");
+ 		});
+	});
+
+
+// DUCK 2c
+	$( "#clickme" ).click(function() {
+  		$( "#duck2c" ).animate({
+   		 	left: "+=300",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck2c" ).animate({
+   		 	left: "+=500",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck2c" ).animate({
+   		 	left: "+=800",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck2c" ).animate({
+   		 	left: "+=300",
+  		}, 1000, function() {
+  			$("#duck2c").css("display", "none");
+  		});
+
+	// GO BACK HOME
+  		$( "#duck2c" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+  		  $("#duck2c").css("display", "inline-block");
+ 		});
+
+ 		$( "#duck2c" ).animate({
+   		 	left: "+=300",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck2c" ).animate({
+   		 	left: "+=500",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck2c" ).animate({
+   		 	left: "+=800",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck2c" ).animate({
+   		 	left: "+=300",
+  		}, 1000, function() {
+  			$("#duck2c").css("display", "none");
+  		});
+
+	// GO BACK HOME
+  		$( "#duck2c" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+  		  $("#duck2c").css("display", "inline-block");
+ 		});
+	});
+
+
+// DUCK 3a
+	$( "#clickme" ).click(function() {
+  		$( "#duck3a" ).animate({
+   		 	left: "+=500",
+  		}, 3000, function() {
+  		});
+
+  		$( "#duck3a" ).animate({
+   		 	left: "+=700",
+  		}, 1500, function() {
+  		});
+
+  		$( "#duck3a" ).animate({
+   		 	left: "+=500",
+  		}, 500, function() {
+  		});
+
+  		$( "#duck3a" ).animate({
+   		 	left: "+=200",
+  		}, 1000, function() {
+  			$("#duck3a").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck3a" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck3a").css("display", "inline-block");
+ 		});
+
+ 		$( "#duck3a" ).animate({
+   		 	left: "+=500",
+  		}, 3000, function() {
+  		});
+
+  		$( "#duck3a" ).animate({
+   		 	left: "+=700",
+  		}, 1500, function() {
+  		});
+
+  		$( "#duck3a" ).animate({
+   		 	left: "+=500",
+  		}, 500, function() {
+  		});
+
+  		$( "#duck3a" ).animate({
+   		 	left: "+=200",
+  		}, 1000, function() {
+  			$("#duck3a").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck3a" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck3a").css("display", "inline-block");
+ 		});
+	});
+
+
+// DUCK 3b
+	$( "#clickme" ).click(function() {
+  		$( "#duck3b" ).animate({
+   		 	left: "+=100",
+  		}, 1500, function() {
+  		});
+
+  		$( "#duck3b" ).animate({
+   		 	left: "+=500",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck3b" ).animate({
+   		 	left: "+=600",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck3b" ).animate({
+   		 	left: "+=700",
+  		}, 1500, function() {
+  			$("#duck3b").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck3b" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+  	      $("#duck3b").css("display", "inline-block");
+ 		});
+
+ 		$( "#duck3b" ).animate({
+   		 	left: "+=100",
+  		}, 1500, function() {
+  		});
+
+  		$( "#duck3b" ).animate({
+   		 	left: "+=500",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck3b" ).animate({
+   		 	left: "+=600",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck3b" ).animate({
+   		 	left: "+=700",
+  		}, 1500, function() {
+  			$("#duck3b").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck3b" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+  	      $("#duck3b").css("display", "inline-block");
+ 		});
+	});
+
+
+// DUCK 3c
+	$( "#clickme" ).click(function() {
+  		$( "#duck3c" ).animate({
+   		 	left: "+=700",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck3c" ).animate({
+   		 	left: "+=500",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck3c" ).animate({
+  			left: "+=400",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck3c" ).animate({
+   		 	left: "+=300",
+  		}, 1000, function() {
+  			$("#duck3c").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck3c" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck3c").css("display", "inline-block");
+ 		});
+
+ 		$( "#duck3c" ).animate({
+   		 	left: "+=700",
+  		}, 1000, function() {
+  		});
+
+  		$( "#duck3c" ).animate({
+   		 	left: "+=500",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck3c" ).animate({
+  			left: "+=400",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck3c" ).animate({
+   		 	left: "+=300",
+  		}, 1000, function() {
+  			$("#duck3c").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck3c" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck3c").css("display", "inline-block");
+ 		});
+	});
+
+
+// DUCK 4a
+	$( "#clickme" ).click(function() {
+  		$( "#duck4a" ).animate({
+   		 	left: "+=200",
+  		}, 500, function() {
+  		});
+
+  		$( "#duck4a" ).animate({
+   		 	left: "+=800",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck4a" ).animate({
+   		 	left: "+=200",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck4a" ).animate({
+   		 	left: "+=700",
+  		}, 1500, function() {
+  			$("#duck4a").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck4a" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck4a").css("display", "inline-block");
+ 		});
+
+ 			$( "#duck4a" ).animate({
+   		 	left: "+=200",
+  		}, 500, function() {
+  		});
+
+  		$( "#duck4a" ).animate({
+   		 	left: "+=800",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck4a" ).animate({
+   		 	left: "+=200",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck4a" ).animate({
+   		 	left: "+=700",
+  		}, 1500, function() {
+  			$("#duck4a").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck4a" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck4a").css("display", "inline-block");
+ 		});
+
+	});
+
+
+// DUCK 4b
+	$( "#clickme" ).click(function() {
+  		$( "#duck4b" ).animate({
+   		 	left: "+=700",
+  		}, 500, function() {
+  		});
+
+  		$( "#duck4b" ).animate({
+   		 	left: "+=500",
+  		}, 1500, function() {
+  		});
+
+  		$( "#duck4b" ).animate({
+   		 	left: "+=400",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck4b" ).animate({
+   		 	left: "+=300",
+  		}, 2000, function() {
+  			$("#duck4b").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck4b" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck4b").css("display", "inline-block");
+ 		});
+
+ 		$( "#duck4b" ).animate({
+   		 	left: "+=700",
+  		}, 500, function() {
+  		});
+
+  		$( "#duck4b" ).animate({
+   		 	left: "+=500",
+  		}, 1500, function() {
+  		});
+
+  		$( "#duck4b" ).animate({
+   		 	left: "+=400",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck4b" ).animate({
+   		 	left: "+=300",
+  		}, 2000, function() {
+  			$("#duck4b").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck4b" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+          $("#duck4b").css("display", "inline-block");
+ 		});
+
+	});
+
+
+// DUCK 4c
+// move right then disappear, go back home fast, reappear, begin again
+	$( "#clickme" ).click(function() {
+  		$( "#duck4c" ).animate({
+   		 	left: "+=200",
+  		}, 500, function() {
+  		});
+
+  		$( "#duck4c" ).animate({
+   		 	left: "+=800",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck4c" ).animate({
+   		 	left: "+=100",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck4c" ).animate({
+   		 	left: "+=800",
+  		}, 1500, function() {
+  			$("#duck4c").css("display", "none");
+  			// SHIRMUNG: $("#duck4c").css("left", "?");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck4c" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+  		  $("#duck4c").css("display", "inline-block");
+ 		});
+
+ 		$( "#duck4c" ).animate({
+   		 left: "+=200",
+  		}, 500, function() {
+  		});
+
+  		$( "#duck4c" ).animate({
+   		 	left: "+=800",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck4c" ).animate({
+   		 	left: "+=100",
+  		}, 2000, function() {
+  		});
+
+  		$( "#duck4c" ).animate({
+   		 	left: "+=800",
+  		}, 1500, function() {
+  			$("#duck4c").css("display", "none");
+  		});
+
+  	// GO BACK HOME
+  		$( "#duck4c" ).animate({
+   			left: "-=1900",
+  			}, 1, function() {
+  		  $("#duck4c").css("display", "inline-block");
+  		  $("#buttonchange").html("CONTINUE");
+  		  $(".go-again").css("background-color", "coral");
+ 		});
+
+	});
+
+
 });
-

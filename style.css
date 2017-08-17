@@ -1,150 +1,189 @@
 body {
-	background-color: pink;
-}
-
-.top-container {
-	background-image: url("images/background.jpg");
-	width: 100%;
-	border-style: dashed;
-	border-color: white;
+	font-family: monospace;
+	background-color: whitesmoke;
+	background-image: url("images/subway4.jpg");
 }
 
 .header {
-	width: 65%;
-	margin: 0 auto;
+	background-color: whitesmoke;
 	text-align: center;
-	color: white;
-	font-family: 'Courgette', cursive;
-	background-color: hotpink;
-	padding: 10px;
-	border-right-style: dashed;
-	border-left-style: dashed;
-	border-top-style: none;
-	border-bottom-style: none;
-	border-color: white;
-	border-radius: 10px;
+	border: 5px ridge grey;
+	margin-top: 20px;
+	margin-right: 10%;
+	margin-left: 10%;
+	display: block;
 }
 
 .header h1 {
-	font-size: 120px;
-}
-
-
-@media all and (max-width: 875px) {
-	.header h1 {
-	font-size: 90px;
-	}
-}
-
-@media all and (max-width: 610px) {
-	.header h1 {
-	font-size: 58px;
-	}
-
-	.question p {
-		font-size: 30px;
-	}
-}
-
-.welcome {
-	margin-top: 15px;
-	font-family: 'Courgette', cursive;
-	color: hotpink;
-	text-align: center;
-	font-size: 30px;
-	background-color: white;
-	border-style: dashed;
-	border-color: pink;
-	padding: 5px;
-	padding-top: 15px;
-}
-
-.question {
-	margin-top: 20px;
-	font-family: 'Times New Roman', serif;
-	color: black;
-	font-size: 41px;
+	font-size: 65px;
+	color: navy;
 	font-weight: bold;
-	text-align: center; 
+	padding: 20px;
 }
 
-.col-md-4 {
-	padding: 10px;
+.header p {
+	font-size: 18px;
+	padding-right: 50px;
+	padding-left: 50px;
+	padding-top: 7px;
+	padding-bottom: 20px;
 }
 
-.cookieimg {
-	height: 300px;
-	background-size: cover;
-	background-position: center;
-	border-style: ridge;
-	border-color: dodgerblue;
-	border-width: 5px;
+.clickme {
+	display: inline-block;
+	margin-left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	border-radius: 5px;
+	background-color: crimson;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 2px solid black;
+	cursor: default;
 }
 
-.choc {
-	background-image: url("images/choc.jpg");
+.clickme p {
+	font-size: 33px;
+	padding-right: 3px;
+	padding-left: 3px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	color: whitesmoke;
 }
 
-.sugar {
-	background-image: url("images/sugar.jpg");
+.score {
+	margin: 10px;
+	display: inline-block;
+	background-color: whitesmoke;
+	border: 5px double black;
 }
 
-.lemon {
-	background-image: url("images/lemon.jpg");
+#score-display, #rat-display, #roach-display, #scream-display, #gma-display {
+	color: crimson;
 }
 
-.cookiename {
+.score p {
 	color: black;
-	font-family: 'Courgette', cursive;
-	font-size: 40px;
+	font-size: 23px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
-input {
-	background-color: mistyrose;
-	width: 50%;
-	border-radius: 10px;
-	border-style: ridge;
-	border-color: dodgerblue;
-	color: deeppink;
-	font-size: 24px;
-	font-family: 'Times New Roman', serif;
+.gamepiece {
+	background-color: none;
+	width: 70px;
+	height: 68px;
+	position: relative;
+	display: inline-block;
+	left: -240px;
+	border-radius: 40px;
+	border: 1px solid black;
 }
 
-button {
-	background-color: palevioletred;
-	width: 50%;
-	border-radius: 10px;
-	border-style: ridge;
-	border-color: dodgerblue;
-	color: mistyrose;
-	font-size: 24px;
-	font-family: 'Times New Roman', serif;
+.scorepiece {
+	background-color: none;
+	width: 50px;
+	height: 48px;
+	position: relative;
+	display: inline-block;
+	border-radius: 40px;
+	border: 1px solid lightslategrey;
+	margin-left: 6px;
+	margin-right: -10px;
 }
 
-.ent {
+.indivscore {
+	display: inline-block;
+}
+
+.rat {
+	background: url("images/ratnew.png") no-repeat center;
+}
+
+.roach {
+	background: url("images/roachnew.png") no-repeat center;
+}
+
+.gma {
+	background: url("images/gmanew.png") no-repeat center;
+}
+
+.scream {
+	background: url("images/screamnew.png") no-repeat center;
+}
+
+#duck1a, #duck3c {
+	background-color: grey;
+}
+
+#duck1b, #duck3a, #duck4b {
+	background-color: gold;
+} 
+
+#duck1c, #duck2b, #duck4a  {
+	background-color: rosybrown;
+}
+
+#duck2c, #duck4c {
+	background-color: dodgerblue;
+}
+
+#duck2a, #duck3b {
 	background-color: white;
 }
 
-.bottom-container {
-	margin-top: 30px;
+#playarea {
+	background-color: lightsteelblue;
+	height: 320px;
+	cursor: url("images/crosshair.png"), auto;
+	border-top: 5px ridge lightslategrey;
+	border-bottom: 5px ridge lightslategrey;
 }
 
-.basket {
-	font-family: 'Courgette', cursive;
-	color: black;
-	text-align: center;
-	font-size: 25px;
-	background-color: mistyrose;
-	border-style: dashed;
-	border-color: pink;
-	padding: 5px;
-	padding-top: 15px;
+.setdiv {
+	padding-top: 5px;
+	height: 75px;
 }
 
-.qty {
-	font-size: 20px;
-	font-family: 'Courgette', cursive;
-	color: hotpink;	
-	text-align: center;
-}
+@media all and (max-width: 414px) {
 
+	.header h1 {
+		font-size: 38px;
+		padding: 10px;
+	}
+
+	.header p {
+		font-size: 14px;
+		padding-right: 25px;
+		padding-left: 25px;
+		padding-top: 4px;
+		padding-bottom: 10px;
+	}
+
+	.clickme p {
+		font-size: 25px;
+	}
+
+	.clickme {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	.score p {
+		color: black;
+		font-size: 19px;
+	}
+
+	.score {
+		margin: 5px;
+	}
+
+	.scorepiece {
+		width: 40px;
+		height: 38px;
+	}
+
+
+}
